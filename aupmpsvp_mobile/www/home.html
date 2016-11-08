@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+    <head>
+        <title>AUPMPSVP</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <link rel="shortcut icon" href="img/logo.png" type="image/png" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome-4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css" />
+        <link rel="stylesheet" type="text/css" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+        <style>
+            .borderdesignlefttop {
+                border-top: 2px solid;
+                border-left: 2px solid; 
+                border-right: 1px solid; 
+                border-bottom: 1px solid;
+                border-color:lightgray;
+                text-align: center;
+                font-size: 14px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                font-weight: bold;
+            }
+            .borderdesignrighttop {
+                border-top: 2px solid;
+                border-left: 1px solid; 
+                border-right: 2px solid; 
+                border-bottom: 1px solid;
+                border-color:lightgray;
+                text-align: center;
+                font-size: 14px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                font-weight: bold;
+            }
+            .borderdesignleftbot {
+                border-top: 1px solid;
+                border-left: 2px solid; 
+                border-right: 1px solid; 
+                border-bottom: 2px solid;
+                border-color:lightgray;
+                text-align: center;
+                font-size: 26px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                font-weight: bolder;
+                background-color: #f6f6f6;
+            }
+            .borderdesignrightbot {
+                border-top: 1px solid;
+                border-left: 1px solid; 
+                border-right: 2px solid; 
+                border-bottom: 2px solid;
+                border-color:lightgray;
+                text-align: center;
+                font-size: 26px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                font-weight: bolder;
+                background-color: #f6f6f6;
+            }
+        </style>
+        
+        <!-- Scripts -->
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script>
+            
+            $("a[data-role=tab]").each(function () {
+                var anchor = $(this);
+                anchor.bind("click", function () {
+                    $.mobile.changePage(anchor.attr("href"), {
+                        transition: "fade",
+                        changeHash: false
+                    });
+                    return false;
+                });
+            });
+
+            $("div[data-role=page]").bind("pagebeforeshow", function () {
+                $.mobile.silentScroll(0);
+            });
+            
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+            }, false);
+            
+            $(document).on('pagebeforeshow', function () {
+             $(this).find('a[data-rel=back]').buttonMarkup({iconpos: 'notext'});
+            });
+            
+            $(document).bind('mobileinit',function(){
+                $.mobile.changePage.defaults.changeHash = false;
+                $.mobile.hashListeningEnabled = false;
+                $.mobile.pushStateEnabled = false;
+            });
+            
+        </script>
+    </head>
+    <body>
+        
+        <!-- HOme Page -->
+        
+        <div data-role="page" id="home">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                    <div class="ui-grid-b" style="margin-bottom:10px;">
+                        <div class="ui-block-a" style="width:80%;">
+                            <h1 style="text-align:left; margin-left:10px; margin-top:5px;">
+                                <span style="font-size:18px; margin-left:5px;">PROFILE </span>
+                            </h1>
+                        </div>
+                        <div class="ui-block-b" style="width:10%;">
+                            <div href="#" style="margin-right:45px; margin-top:5px; font-size:25px; color:white;" class="ui-btn-right fa fa-refresh" onclick="window.location.reload();"></div>
+                            <div href="#" style="margin-right:0px; margin-top:3px; font-size:28px; color:white;" class="ui-btn-right fa fa-sign-out logout" onclick="logoutdialog()"></div>
+                        </div>
+                    </div>
+            </div>
+            <div data-role="content">
+                <strong>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Username:</div>
+                        <br><b><i><div class="ui-block-b disp_UN" style="font-size:22px;"></div></i></b>	  
+                    </div>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Student Number:</div>
+                        <br><b><i><div class="ui-block-b disp_SN" style="font-size:22px;"></div></i></b>  
+                    </div>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Name:</div>
+                        <br><b><i><div class="ui-block-b disp_NM" style="font-size:22px;"></div></i></b>  
+                    </div>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Level:</div>
+                        <br><b><i><div class="ui-block-b disp_LV" style="font-size:22px;"></div></i></b>  
+                    </div>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Jersey Number:</div>
+                        <br><b><i><div class="ui-block-b disp_JN" style="font-size:22px;"></div></i></b>  
+                    </div>
+                    <div class="ui-grid-a" style="margin-bottom:15px;">
+                        <div class="ui-block-a" style="font-size:12px;">Team Name:</div>
+                        <br><b><i><div class="ui-block-b disp_TN" style="font-size:22px;"></div></i></b> 
+                    </div>
+                </strong>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-role="tab" data-icon="user" style="background:#022241; color:white;">Profile</a></li>
+                        <li><a href="#statistics" data-role="tab" data-icon="bar-chart-o" style="background:#0555a4; color:white;">Statistics</a></li>
+                        <li><a href="#about" data-role="tab" data-icon="grid" style="background:#0555a4; color:white;">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistics Page -->
+        
+        <div data-role="page" id="statistics">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                    <div class="ui-grid-b" style="margin-bottom:10px;">
+                        <div class="ui-block-a" style="width:80%;">
+                            <h1 style="text-align:left; margin-left:10px; margin-top:5px;">
+                                <span style="font-size:18px; margin-left:5px;">Statistics </span>
+                            </h1>
+                        </div>
+                        <div class="ui-block-b" style="width:10%;">
+                            <div href="#" style="margin-right:45px; margin-top:5px; font-size:25px; color:white;" class="ui-btn-right fa fa-refresh" onclick="window.location.reload();"></div>
+                            <div href="#" style="margin-right:0px; margin-top:3px; font-size:28px; color:white;" class="ui-btn-right fa fa-sign-out logout" onclick="logoutdialog()"></div>
+                        </div>
+                    </div>
+            </div>
+            <div data-role="content">
+                <div style="margin-top:-5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#d7d7f7">OPPONENT</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#d7d7f7">GAME NUM.</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">Team 1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#dfdff8">RESULT</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#dfdff8">MIN</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">WIN</div>
+                        <div class="ui-block-b borderdesignrightbot">01:12</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e3e3f9">FG</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e3e3f9">FG%</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1/1</div>
+                        <div class="ui-block-b borderdesignrightbot">100%</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e7e7fa">2P</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e7e7fa">2P%</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1/1</div>
+                        <div class="ui-block-b borderdesignrightbot">100%</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#ebebfb">3P</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#ebebfb">3P%</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1/1</div>
+                        <div class="ui-block-b borderdesignrightbot">100%</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e7e7fa">FT</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e7e7fa">FT%</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1/1</div>
+                        <div class="ui-block-b borderdesignrightbot">100%</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e3e3f9">+/-</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e3e3f9">REB</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#dfdff8">OREB</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#dfdff8">DREB</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#d7d7f7">AST</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#d7d7f7">STL</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#dfdff8">DEFL</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#dfdff8">BLK</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e3e3f9">TO</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e3e3f9">EFF</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e7e7fa">PF</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e7e7fa">PTS</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">1</div>
+                        <div class="ui-block-b borderdesignrightbot">1</div>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignlefttop" style="background-color:#e3e3f9">AST/TO</div>
+                        <div class="ui-block-b borderdesignrighttop" style="background-color:#e3e3f9">DATE</div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a borderdesignleftbot">01/01</div>
+                        <div class="ui-block-b borderdesignrightbot">03/02/2016</div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-role="tab" data-icon="user" style="background:#0555a4; color:white;">Profile</a></li>
+                        <li><a href="#statistics" data-role="tab" data-icon="bar-chart-o" style="background:#022241; color:white;">Statistics</a></li>
+                        <li><a href="#about" data-role="tab" data-icon="grid" style="background:#0555a4; color:white;">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        
+        <div data-role="page" id="about">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                    <div class="ui-grid-b" style="margin-bottom:10px;">
+                        <div class="ui-block-a" style="width:80%;">
+                            <h1 style="text-align:left; margin-left:10px; margin-top:5px;">
+                                <span style="font-size:18px; margin-left:5px;">ABOUT </span>
+                            </h1>
+                        </div>
+                        <div class="ui-block-b" style="width:10%;">
+                            <div href="#" style="margin-right:45px; margin-top:5px; font-size:25px; color:white;" class="ui-btn-right fa fa-refresh" onclick="window.location.reload();"></div>
+                            <div href="#" style="margin-right:0px; margin-top:3px; font-size:28px; color:white;" class="ui-btn-right fa fa-sign-out logout" onclick="logoutdialog()"></div>
+                        </div>
+                    </div>
+            </div>
+            <div data-role="content">
+                    <h3 class="panel-title" style="text-align:center; margin-top:30px;margin-bottom:50px;"><b style="font-size:20px;">Arellano University</b><br><strong style="font-size:12px;">Profile Management and Performance Statistics for Varsity Players</strong></h3>
+                <p>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:5px;"><strong>Christopher C. Deleon</strong></li>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:5px;"><strong>John Lester T. Delos Santos</strong></li>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:50px;"><strong>John Eric A. Navarro</strong></li>
+                </p>
+                <p style="text-align: center;  font-size:12px;"><strong><i>BS Computer Science<br>Arellano University</i></strong></p>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-role="tab" data-icon="user" style="background:#0555a4; color:white;">Profile</a></li>
+                        <li><a href="#statistics" data-role="tab" data-icon="bar-chart-o" style="background:#0555a4; color:white;">Statistics</a></li>
+                        <li><a href="#about" data-role="tab" data-icon="grid" style="background:#022241; color:white;">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logout -->
+        
+        <div data-role="page" id="logoutpopup" data-close-btn="none">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                <h1><strong>Logout!</strong></h1>
+            </div>
+            <div data-role="content">
+                <h1><strong style="font-size:25px">Logout Successful!</strong></h1>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <a href="#" data-role="button" onclick="logout()" style="width:90%" >Okay</a>
+            </div>
+        </div> 
+        <script type="text/javascript" src="js/script.js"></script>
+        
+        <!-- Redirections -->
+        
+        <script type="text/javascript">
+            
+            function goToAbout() {
+                 
+                $.mobile.changePage("#about", { reverse: false, transition: "slide" });
+            }
+            
+            function goToHome() {
+                 
+                $.mobile.changePage("#home", { reverse: false, transition: "fade" });
+            }
+            
+            function logoutdialog() {
+                
+                $.mobile.changePage("#logoutpopup", { role: "dialog" } )
+            }
+            
+            function logout() {
+                
+                window.localStorage.clear();
+                window.sessionStorage.clear();
+                window.location = "index.html";      //Redirection
+
+            }
+            
+            function goToStatistics() {
+                 
+                $.mobile.changePage("#statistics", { reverse: false, transition: "slide" });
+            }
+            
+        </script>
+            
+    </body>
+</html>

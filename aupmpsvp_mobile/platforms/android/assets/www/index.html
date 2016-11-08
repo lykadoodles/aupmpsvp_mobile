@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+    <head>
+        <title>AUPMPSVP</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        
+        <link rel="shortcut icon" href="img/logo.png" type="image/png" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome-4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+        
+        <!-- Scripts -->
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script>
+
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+            }, false);
+            
+            $(document).on('pagebeforeshow', function () {
+             $(this).find('a[data-rel=back]').buttonMarkup({iconpos: 'notext'});
+            });
+            
+            $(document).bind('mobileinit',function(){
+                $.mobile.changePage.defaults.changeHash = false;
+                $.mobile.hashListeningEnabled = false;
+                $.mobile.pushStateEnabled = false;
+            });
+            
+        </script> 
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        
+    </head>
+    <body>
+        
+        <!-- Login Page -->
+        
+        <div data-role="page" id="login">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                <div style="margin-bottom:8px;"><h1><span style="font-size:14px;">&#8226; AUPMPSVP &#8226;</span></h1></div>
+            </div>
+            <div data-role="content">
+                    <h3 class="panel-title" style="text-align:center; margin-top:30px;margin-bottom:50px;"><b style="font-size:20px;">Arellano University</b><br><strong style="font-size:12px;">Profile Management and Performance Statistics for Varsity Players</strong></h3>
+                <input name="username" placeholder="username" type="text" id="username" onkeydown="if (event.keyCode == 13) document.getElementById('btnlogin').click()">
+                <input name="password" placeholder="password" type="password" id="password" onkeydown="if (event.keyCode == 13) document.getElementById('btnlogin').click()">
+                <button type="button" name="btnlogin" id="btnlogin" style="background-color:#0555a4; color:white; font-weight:normal; opacity:.9;">Login</button>
+                <button type="button" name="btnloading" id="btnloading" style="display:none;" disabled>Loading...</button>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <h1>
+                    <div class="ui-grid-a">
+                      <div class="ui-block-a" style="text-align:left;"> </div>
+                      <div class="ui-block-b" style="text-align:right;" onclick="goToAbout()"><span>About</span></div>
+                    </div>
+                </h1>
+            </div>
+        </div>
+        
+        <!-- Successfully Login -->
+        
+        <div data-role="page" id="successlogin" data-close-btn="none">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; color:white;">
+                <h1><span>Success!</span></h1>
+            </div>
+            <div data-role="content">
+                <h1><strong style="font-size:25px">Login Successful!</strong></h1>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; color:white;">
+                <a href="#" data-role="button" onclick="goToHome()" style="width:90%" >Okay</a>
+            </div>
+        </div>
+        
+        <!-- Failed Login -->
+        
+        <div data-role="page" id="failedlogin" data-close-btn="none">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; color:white;">
+                <h1><span>Error!</span></h1>
+            </div>
+            <div data-role="content">
+                <h1><strong style="font-size:25px">Login Failed!</strong></h1>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; color:white;">
+                <a href="#" data-role="button" onclick="goToLogin()" style="width:90%" >Okay</a>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        
+        <div data-role="page" id="about">
+            <div data-role="header" data-position="fixed" style="background-color:#0555a4; margin-top:-2px; color:white;">
+                <div href="#" style="margin-top:4px; font-size:25px; color:white;" class="ui-btn-left fa fa-chevron-left" onclick="goBack()"></div>
+                <h1><span>ABOUT</span></h1>
+            </div>
+            <div data-role="content">
+                    <h3 class="panel-title" style="text-align:center; margin-top:30px;margin-bottom:50px;"><b style="font-size:20px;">Arellano University</b><br><strong style="font-size:12px;">Profile Management and Performance Statistics for Varsity Players</strong></h3>
+                <p>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:5px;"><strong>Christopher C. Deleon</strong></li>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:5px;"><strong>John Lester T. Delos Santos</strong></li>
+                    <li style="margin-left:20%; font-size:12px; margin-bottom:50px;"><strong>John Eric A. Navarro</strong></li>
+                </p>
+                <p style="text-align: center;  font-size:12px;"><strong><i>BS Computer Science<br>Arellano University</i></strong></p>
+            </div>
+            <div data-role="footer" data-position="fixed" style="background-color:#0555a4; margin-bottom:-2px; color:white;">
+                <h1><span style="font-size:12px;">&#8226; AUPMPSVP &#8226;</span></h1>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/script.js"></script>
+        
+        <!-- Redirections -->
+        
+        <script type="text/javascript">
+            
+            function goToHome() {
+                
+                 window.location = "home.html";      //Redirection
+            }
+            
+            function goBack() {
+                 
+                $.mobile.changePage("#login", { reverse: false, transition: "fade" });
+            }
+            
+            function goToAbout() {
+                 
+                $.mobile.changePage("#about", { reverse: false, transition: "slide" });
+            }
+            
+            function goToLogin() {
+                 
+                $.mobile.changePage("#login", { reverse: false, transition: "slide" });
+                window.location.reload();
+            }
+            
+        </script>
+            
+    </body>
+</html>
